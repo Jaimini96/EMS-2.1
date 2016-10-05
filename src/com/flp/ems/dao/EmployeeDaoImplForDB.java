@@ -18,14 +18,35 @@ import com.flp.ems.util.Util;
 public class EmployeeDaoImplForDB implements IemployeeDao{
 
 
-	private Connection dbConnection;
-	private Properties dbProps;
+	Properties props = new Properties();
+	Connection dbConnection;
+
+	//props.load(fIn);
 	//Properties props = new Properties();
 	//String url = props.getProperty("jdbc.url");
 	
-	public EmployeeDaoImplForDB() throws SQLException, IOException{
-		dbProps = DBProps.getDbProperties();
-		dbConnection = DriverManager.getConnection(dbProps.getProperty("jdbc.database.url"), dbProps.getProperty("jdbc.database.username"), dbProps.getProperty("jdbc.database.password"));
+	public EmployeeDaoImplForDB() {
+		FileInputStream fIn;
+		try {
+			fIn = new FileInputStream("dbDetails.properties");
+			props.load(fIn);
+
+		} catch (FileNotFoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String url = props.getProperty("jdbc.url");
+
+		try {
+			dbConnection = DriverManager.getConnection(url);		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	//props.load(fIn);
 
@@ -33,30 +54,30 @@ public class EmployeeDaoImplForDB implements IemployeeDao{
 	public void addEmployee(Employee e) throws IOException, SQLException, ParseException {
 		FileInputStream fIn = new FileInputStream("dbDetails.properties");
 		Employee E= e;
-		//String insertQuery = props.getProperty("jdbc.query.insert");
+		String insertQuery = props.getProperty("jdbc.query.insert");
 
-		try(PreparedStatement insertStatement = dbConnection.prepareStatement(dbProps.getProperty("jdbc.queries.employee.insert"))){
-			insertStatement.setInt(1, E.getEmpId1());
-			insertStatement.setString(2, E.getName());
-			//insertStatement.setString(3, employee.getKinId());
-			insertStatement.setString(3, E.getEmailId());
-			insertStatement.setLong(4, E.getPhoneNumber());
-			insertStatement.setString(5, E.getAddress());
+		try(PreparedStatement insertStatement = dbConnection.prepareStatement(insertQuery)){
+			//insertStatement.setInt(1, E.getEmpId1());
+			insertStatement.setString(1, E.getName());
+			//insertStatement.setString(2, employee.getKinId());
+			insertStatement.setString(2, E.getEmailId());
+			insertStatement.setLong(3, E.getPhoneNumber());
+			insertStatement.setString(4, E.getAddress());
 			try {
-				insertStatement.setDate(6, Util.getSQLDateFromDate(E.getDateOfBirth()));
+				insertStatement.setDate(5, Util.getSQLDateFromDate(E.getDateOfBirth()));
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			try {
-				insertStatement.setDate(7, Util.getSQLDateFromDate(E.getDateOfJoining()));
+				insertStatement.setDate(6, Util.getSQLDateFromDate(E.getDateOfJoining()));
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			insertStatement.setInt(8, E.getDepartment());
-			insertStatement.setInt(9, E.getProject());
-			insertStatement.setInt(10, E.getRole());
+			insertStatement.setInt(7, E.getDepartment());
+			insertStatement.setInt(8, E.getProject());
+			insertStatement.setInt(9, E.getRole());
 			
 			int rows = insertStatement.executeUpdate();
 			System.out.println(rows + " row(s) updated.");
@@ -67,6 +88,35 @@ public class EmployeeDaoImplForDB implements IemployeeDao{
 	@Override
 	public void modifyEmployee(Employee e) {
 		// TODO Auto-generated method stub
+		FileInputStream fIn = new FileInputStream("dbDetails.properties");
+		Employee E= e;
+		String insertQuery = props.getProperty("jdbc.query.insert");
+
+		try(PreparedStatement insertStatement = dbConnection.prepareStatement(insertQuery)){
+			//insertStatement.setInt(1, E.getEmpId1());
+			insertStatement.setString(1, E.getName());
+			//insertStatement.setString(2, employee.getKinId());
+			insertStatement.setString(2, E.getEmailId());
+			insertStatement.setLong(3, E.getPhoneNumber());
+			insertStatement.setString(4, E.getAddress());
+			try {
+				insertStatement.setDate(5, Util.getSQLDateFromDate(E.getDateOfBirth()));
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				insertStatement.setDate(6, Util.getSQLDateFromDate(E.getDateOfJoining()));
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			insertStatement.setInt(7, E.getDepartment());
+			insertStatement.setInt(8, E.getProject());
+			insertStatement.setInt(9, E.getRole());
+			
+			int rows = insertStatement.executeUpdate();
+			System.out.println(rows + " row(s) updated.");
 		
 	}
 

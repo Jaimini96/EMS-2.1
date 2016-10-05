@@ -3,4 +3,4 @@ use ems;
 create table Role(roleId int PRIMARY KEY, name varchar(30), description varchar(100));
 //create table Department(departmentId int PRIMARY KEY, name varchar(30), description varchar(100));
 create table Project(projectId int PRIMARY KEY, name varchar(30), description varchar(100), departmentId int, FOREIGN KEY(departmentId) REFERENCES Department(departmentId));
-create table Employee(employeeId int PRIMARY KEY, name varchar(30), emailId varchar(20) UNIQUE, phone long, address varchar(100), dateOfBirth date, dateOfJoining date, departmentId int, projectId int, roleId int);
+create table Employee(employeeId int NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(30), emailId varchar(20) UNIQUE, phone long, address varchar(100), dateOfBirth date, dateOfJoining date, departmentId int, projectId int, roleId int);

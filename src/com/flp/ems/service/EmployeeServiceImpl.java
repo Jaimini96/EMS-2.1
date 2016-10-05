@@ -1,5 +1,8 @@
 package com.flp.ems.service;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,7 +25,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	int emp_id1;
 	HashMap<String, String> newEmp ;
 	EmployeeDaoImplForList empDaoList = new EmployeeDaoImplForList();
-	EmployeeDaoImplForDB empDaoDb;
+	EmployeeDaoImplForDB empDaoDb = new EmployeeDaoImplForDB();
 	public void addEmployee(HashMap newEmp){
 		
 		this.newEmp=newEmp;
@@ -38,7 +41,12 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 		Employee newE = new Employee( name,  email_id,  phone,dob,doj, address,  dept, proj,  role);
 		//empDaoList.addEmployee(newE);
-		empDaoDb.addEmployee(newE);
+		try {
+			empDaoDb.addEmployee(newE);
+		} catch (IOException | SQLException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

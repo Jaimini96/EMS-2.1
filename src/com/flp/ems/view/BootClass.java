@@ -24,32 +24,32 @@ public class BootClass {
 		//sc.close();
 		if(digit==1){System.out.println("Adding a new employee");
 			Scanner sc1=new Scanner(System.in); 
-			System.out.println("Enter Name");  
+			System.out.print("Enter Name: ");  
 			String name=sc1.next(); 
 			while(val1.validateName(name)==false){
 				 name=sc1.next();
 			};
-			System.out.println("Enter Email ID");  
+			System.out.print("Enter Email ID: ");  
 			String email_id=sc.next();
-			while(val1.validatePhone(email_id)==false){
+			/*while(val1.validatePhone(email_id)==false){
 				 email_id=sc1.next();
-			};
-			System.out.println("Enter Phone no");  
+			};*/
+			System.out.print("Enter Phone no: ");  
 			String phone=sc.next();  
 			while(val1.validatePhone(phone)==false){
 				 phone=sc1.next();
 			};
-			System.out.println("Enter Date of Birth");  
+			System.out.print("Enter Date of Birth: ");  
 			String dob=sc.next();
-			System.out.println("Enter Date of Joining ");  
+			System.out.print("Enter Date of Joining: ");  
 			String doj=sc.next();
-			System.out.println("Enter address");  
+			System.out.print("Enter address: ");  
 			String address=sc.next();  
-			System.out.println("Enter dept no");  
+			System.out.print("Enter dept no");  
 			String dept=sc.next(); 
-			System.out.println("Enter Project no");  
+			System.out.print("Enter Project no: ");  
 			String proj=sc.next(); 
-			System.out.println("Enter Role id");  
+			System.out.print("Enter Role id: ");  
 			String role=sc.next();  
 			
 			UserInteraction ui = new UserInteraction(name,email_id,phone,dob,doj,address,dept,proj,role);
