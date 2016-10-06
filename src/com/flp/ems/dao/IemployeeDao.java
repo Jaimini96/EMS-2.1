@@ -25,4 +25,7 @@ public interface IemployeeDao {
 	
 
 	public ArrayList<Employee> getAllEmployee();
+
+
+	ArrayList<Employee> searchEmployee(int id);
 }

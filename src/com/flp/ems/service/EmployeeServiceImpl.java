@@ -64,13 +64,13 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		this.emp_id1=Integer.parseInt((String) newEmp.get("emp_id"));
 
 		Employee newE = new Employee(emp_id1, name,  email_id,  phone,dob,doj, address,  dept, proj,  role);
-		empDaoList.modifyEmployee(newE);
+		empDaoDb.modifyEmployee(newE);
 
 	}
 
 	public void removeEmployee(int emp_id){
 		this.emp_id1=emp_id;
-		empDaoList.removeEmployee(emp_id1);
+		empDaoDb.removeEmployee(emp_id1);
 		
 	}
 
@@ -80,7 +80,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	public void getAllEmployee(){
 		ArrayList<Employee> list;
-		list = empDaoList.getAllEmployee();
+		list = empDaoDb.getAllEmployee();
 		for(Employee i:list){
 			i.getDetails();
 		}

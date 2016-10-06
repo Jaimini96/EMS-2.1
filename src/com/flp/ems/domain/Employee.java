@@ -1,6 +1,7 @@
 package com.flp.ems.domain;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -77,6 +78,9 @@ public class Employee {
 		this.emp_id1 = employeeId;
 	}
 
+	public int getEmployeeId() {
+		return emp_id1;
+	}
 
 
 	public void setName(String name) {
@@ -103,26 +107,40 @@ public class Employee {
 		return  Long.parseLong(phone, 10) ;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phone = phone;
+	public void setPhoneNumber(long l) {
+		this.phone =Long.toString(l);
 	}
 
 	public Date getDateOfBirth() throws ParseException {
 		return Util.getDateFromString(dob);
 	}
-/*
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+
+	/*public void setDateOfBirth(Date dateOfBirth) {
+		 String DATE_FORMAT_NOW = "yyyy-MM-dd";
+		 Date date = dateOfBirth;
+		 SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+		 String stringDate = sdf.format(date );
+		this.dob = stringDate;
 	}
 */
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dob = dateOfBirth;
+	}
 	public Date getDateOfJoining() throws ParseException {
 		return Util.getDateFromString(doj);
 	}
-/*
-	public void setDateOfJoining(Date dateOfJoining) {
-		this.dateOfJoining = dateOfJoining;
-	}*/
 
+	/*public void setDateOfJoining(Date dateOfJoining) {
+		 String DATE_FORMAT_NOW = "yyyy-MM-dd";
+		 Date date = dateOfJoining;
+		 SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+		 String stringDate = sdf.format(date );
+		this.doj = stringDate;
+	}*/
+	
+	public void setDateOfJoining(String dateOfJoining) {
+		this.doj = dateOfJoining;
+	}
 	public String getAddress() {
 		return address;
 	}
@@ -135,24 +153,22 @@ public class Employee {
 		return  Integer.parseInt(dept) ;
 	}
 
-	/*public void setDepartment(Department department) {
-		this.department = department;
+	public void setDepartment(int department) {
+		this.dept = Integer.toString(department);
 	}
-*/
+
 	public int getProject() {
 		return  Integer.parseInt(proj) ;
 	}
-/*
-	public void setProject(Project project) {
-		this.project = project;
-	}*/
+	public void setProject(int project) {
+		this.proj = Integer.toString(project);
+	}
 
 	public int getRole() {
 		return  Integer.parseInt(role) ;
 	}
 
-	/*public void setRole(Role role) {
-		this.role = role;
+	public void setRole(int role) {
+		this.role = Integer.toString(role);
 	}
-	*/
 }
