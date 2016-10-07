@@ -161,7 +161,7 @@ public class EmployeeDaoImplForDB implements IemployeeDao{
 
 	@Override
 	public ArrayList<Employee> searchEmployee(int id) {
-		Employee e = new Employee();
+		//Employee e = new Employee();
 		ArrayList<Employee> list = new ArrayList<>();
 		
 
@@ -175,14 +175,34 @@ public class EmployeeDaoImplForDB implements IemployeeDao{
 			e1.printStackTrace();
 		}
 		int emp_id =id;
-		String searchQuery = props.getProperty("jdbc.query.select1");
-
-		try(PreparedStatement searchStatement = dbConnection.prepareStatement(searchQuery)){
+		
+		//String searchQuery = props.getProperty("jdbc.query.select1");
+		String searchQuery = "select * from Employee where employeeId="+emp_id;
+		try(Statement searchStatement = dbConnection.createStatement()){
 			//insertStatement.setInt(1, E.getEmpId1());
-			searchStatement.setInt(1, emp_id);
-			int rows = searchStatement.executeUpdate();
+			
+			//searchStatement.setInt(1, emp_id);
+			//int rows = searchStatement.executeUpdate();
 			ResultSet result;
+			
+			result = searchStatement.executeQuery(searchQuery);
+			result.beforeFirst();
+			while(result.next()){
+				Employee em = new Employee();
+				em.setEmployeeId( result.getInt(1));
+				em.setName(result.getString(2));
+				em.setPhoneNumber(result.getLong(4));
+				em.setEmailId(result.getString(3));
+				em.setDateOfBirth(result.getString(6));
+				em.setDateOfJoining(result.getString(7));
+				em.setDepartment(result.getInt(8));
+				em.setProject(result.getInt(9));
+				em.setRole(result.getInt(10));
+				em.setAddress(result.getString(5));
 
+				list.add(em);
+				//System.out.println(message+" yolo");
+			}
 			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -226,6 +246,12 @@ public class EmployeeDaoImplForDB implements IemployeeDao{
 			System.out.println("No Employee in the record");
 		}
 		return list;
+	}
+
+	@Override
+	public ArrayList<Employee> searchEmployee(String s) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

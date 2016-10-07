@@ -64,13 +64,13 @@ public class UserInteraction {
 
 		emp_id = emp_id;
 		name = name;
-	if(emp_id==0){
+/*	if(emp_id==0){
 		employeeServiceImpl.searchEmployee(name);
 		
 	}
-	else {
+	else {*/
 		employeeServiceImpl.searchEmployee(emp_id);
-	}
+	//}
 	
 	}
 
@@ -119,9 +119,9 @@ public class UserInteraction {
 		
 	}
 	
-public void searchEmployee(String name){
+/*public void searchEmployee(String name){
 		
-	}
+	}*/
 
 	public void getAllEmployee(){
 		employeeServiceImpl.getAllEmployee();

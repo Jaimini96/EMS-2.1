@@ -87,7 +87,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		
 	}
 
-	public void searchEmployee(String name) {
+	/*public void searchEmployee(String name) {
 		
 		this.name=name;
 		ArrayList<Employee> list =  empDaoList.searchEmployee(name);
@@ -95,13 +95,16 @@ public class EmployeeServiceImpl implements IEmployeeService {
 			i.getDetails();
 		}
 		
-	}
+	}*/
 
 	public void searchEmployee(int emp_id) {
 		
 		int r = emp_id;
-		Employee e = empDaoList.searchEmployee(r);
-		e.getDetails();
+		ArrayList<Employee> e = empDaoDb.searchEmployee(r);
+		for(Employee i:e){
+			i.getDetails();
+		}
+		
 	}
 
 }

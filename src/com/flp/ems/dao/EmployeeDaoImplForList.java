@@ -75,7 +75,13 @@ public class EmployeeDaoImplForList implements IemployeeDao {
 		
 	}
 
-	public Employee searchEmployee(int r) {
+	@Override
+	public ArrayList<Employee> searchEmployee(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*public Employee searchEmployee(int r) {
 		Employee e = new Employee();
 		int count = 0;
 		for(Employee index:empList){
@@ -88,6 +94,6 @@ public class EmployeeDaoImplForList implements IemployeeDao {
 		if(count==0){System.out.println("Employee not found, Please enter valid Employee name");}
 
 		return e;
-	}
+	}*/
 
 }
